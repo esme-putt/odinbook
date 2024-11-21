@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+<div class="user-follow-section">
+  <% if user_signed_in? && current_user != @user %>
+    <% if current_user.following?(@user) %>
+      <%= button_to 'Unfollow', user_unfollow_path(@user), method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+      <%= button_to 'Follow', user_follow_path(@user), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>
+
+  <div class="followers-count">
+    Followers: <%= @user.followers.count %>
+    Following: <%= @user.following.count %>
+  </div>
+</div>
+
+<div>
+  <%= link_to "Back to users", users_path %>
+</div>
