@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :posts, class_name: "Post"
   has_many :comments, class_name: "Comment"
+  has_many :likes, class_name: "Like"
 
   # Follows a user is creating
   has_many :active_follows, 
@@ -32,6 +33,11 @@ class User < ApplicationRecord
   # Method to check if a user is following another user
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # Method to check if a user is has liked a post
+  def likes?(post)
+    likes.exists?(post_id: post.id)
   end
 
   # Method to follow a user

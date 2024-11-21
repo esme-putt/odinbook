@@ -27,4 +27,4 @@ class FollowsController < ApplicationController
         redirect_to @user, alert: "Could not unfollow user"
       end
     end
-  end
+end

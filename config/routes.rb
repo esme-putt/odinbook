@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    # Nested routes for like/unlike actions
+    post 'like', to: 'likes#create'
+    delete 'unlike', to: 'likes#destroy'
+  end
   devise_for :users
   resources :users, only: [:index, :show] do
     # Nested routes for follow/unfollow actions
