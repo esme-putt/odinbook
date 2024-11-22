@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     # Nested routes for like/unlike actions
     post 'like', to: 'likes#create'
     delete 'unlike', to: 'likes#destroy'
+    resources :comments
   end
   devise_for :users
   resources :users, only: [:index, :show] do

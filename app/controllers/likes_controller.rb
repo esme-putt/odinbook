@@ -1,7 +1,7 @@
 class LikesController < ApplicationController
     before_action :authenticate_user!
   
-    def create_like
+    def create
         @post = Post.find(params[:post_id])
         @like = current_user.likes.build(post: @post)
         
@@ -12,12 +12,11 @@ class LikesController < ApplicationController
         end
     end
   
-    def destroy_like
+    def destroy
         @post = Post.find(params[:post_id])
         @like = current_user.likes.find_by(post: @post)
         
-        if @like
-          @like.destroy
+        if @like.destroy
           redirect_to @post, notice: 'Like removed.'
         else
           redirect_to @post, alert: 'Could not remove like.'

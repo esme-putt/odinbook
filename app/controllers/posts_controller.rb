@@ -9,6 +9,9 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @likecount = Like.where(post_id: params[:id]).count
+    @comment = Comment.new
+    @comments = Comment.where(post_id: params[:id])
   end
 
   # GET /posts/new
