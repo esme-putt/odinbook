@@ -1,6 +1,7 @@
 <div id="<%= dom_id user %>">
   <p>
-    <strong>User:</strong>
+    <%= gravatar_for(user) %><br>
+    <%= user.name %><br>
     <%= user.email %>
     <p>Followers:</p><%= user.followers.count %>
     <p>Following:</p><%= user.following.count %>

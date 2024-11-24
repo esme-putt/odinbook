@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   devise_for :users
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:index, :show, :edit, :update] do
     # Nested routes for follow/unfollow actions
     post 'follow', to: 'follows#create'
     delete 'unfollow', to: 'follows#destroy'
