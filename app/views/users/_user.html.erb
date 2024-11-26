@@ -3,8 +3,9 @@
     <%= gravatar_for(user) %><br>
     <%= user.name %><br>
     <%= user.email %>
-    <p>Followers:</p><%= user.followers.count %>
-    <p>Following:</p><%= user.following.count %>
+    <p>
+        Followers: <%= user.followers.count %>
+        Following: <%= user.following.count %>
+    </p>
   </p>
-
 </div>

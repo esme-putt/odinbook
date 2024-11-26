@@ -10,11 +10,16 @@
       <%= button_to 'Follow', user_follow_path(@user), method: :post, class: 'btn btn-primary' %>
     <% end %>
   <% end %>
+</div>
 
-  <div class="followers-count">
-    Followers: <%= @user.followers.count %>
-    Following: <%= @user.following.count %>
-  </div>
+<div id="posts">
+  <h2>Posts</h2>
+  <% @posts.each do |post| %>
+    <%= render post %>
+    <p>
+      <%= link_to "Show this post", post %>
+    </p>
+  <% end %>
 </div>
 
 <div>

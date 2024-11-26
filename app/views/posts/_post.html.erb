@@ -1,7 +1,6 @@
 <div id="<%= dom_id post %>">
   <p>
-    <strong>Content:</strong>
-    <%= post.content %>
-  </p>
-
+    <h2>Post</h2>
+    <p><%= post.content %></p>
+    <small><%= post.user.name if post.user %> on <%= post.created_at.strftime("%B %d, %Y") %></small>
 </div>

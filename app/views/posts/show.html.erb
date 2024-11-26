@@ -2,27 +2,15 @@
 
 <%= render @post %>
 
-<div class="post-like-section">
-  <% if user_signed_in? %>
-    <% if @post.liked_by?(current_user) %>
-      <%= button_to 'Unlike', post_unlike_path(@post), method: :delete, class: 'btn btn-primary' %>
-    <% else %>
-      <%= button_to 'Like', post_like_path(@post), method: :post, class: 'btn btn-primary' %>
-    <% end %>
-  <% end %>
-
-  <div class="likes-count">
-    Likes: <%= @likecount %>
-  </div>
-</div>
-
 <%# Show existing comments %>
 <div class="comments">
-  <h3>Comments</h3>
+  <h4>Comments</h4>
   <% @comments.each do |comment| %>
     <div class="comment">
-      <p><%= comment.content %></p>
-      <small>By <%= comment.user.name if comment.user %> on <%= comment.created_at.strftime("%B %d, %Y") %></small>
+      <p>
+        <%= comment.content %><br>
+        <small><%= comment.user.name if comment.user %> on <%= comment.created_at.strftime("%B %d, %Y") %></small>
+      </p>
     </div>
   <% end %>
 </div>
@@ -37,18 +25,32 @@
             <li><%= @comment.full_message %></li>
           <% end %>
         </ul>
-      </div>
-    <% end %>22
+      </div>ß
+    <% end %>
   
     <%= form_with(model: [@post, @comment], local: true, html: { class: 'comment-form' }) do |f| %>
       <div class="field">
-      <%= f.text_area :content %>
+      <%= f.text_area :content %><br>
       <%= f.submit "Create Comment", data: { disable_with: 'Submitting...' } %>
   </div>
 <% end %>
 
-
 <% end %>
+
+<div class="post-like-section">
+  <br>
+  <div class="likes-count">
+    <%= @likecount %> like
+  </div>
+  <% if user_signed_in? %>
+    <% if @post.liked_by?(current_user) %>
+      <%= button_to 'Unlike', post_unlike_path(@post), method: :delete, class: 'btn btn-primary' %>
+    <% else %>
+      <%= button_to 'Like', post_like_path(@post), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>
+  <br>
+</div>
   
 <div>
   <%= link_to "Edit this post", edit_post_path(@post) %> |

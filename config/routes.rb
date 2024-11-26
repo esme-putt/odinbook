@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     delete 'unlike', to: 'likes#destroy'
     resources :comments
   end
-  devise_for :users
-  resources :users, only: [:index, :show, :edit, :update] do
+  devise_for :users, :controllers => { :registrations => "registrations_mailer" }
+  resources :users, only: [:index, :show, :edit, :update, :create] do
     # Nested routes for follow/unfollow actions
     post 'follow', to: 'follows#create'
     delete 'unfollow', to: 'follows#destroy'
